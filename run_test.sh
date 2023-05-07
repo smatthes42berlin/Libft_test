@@ -1,14 +1,18 @@
+#!/bin/bash
+
+source config.sh
+
 main() {
   clear
-  rel_path_to_project="../../projects42/Libft"
-  check_necess_files $rel_path_to_project
+  # rel_path_to_project="../../projects42/Libft"
   for path_to_file in "$rel_path_to_project"/*.c; do
     echo $path_to_file
     compile_code
     run_tests
     rm test
   done
-  do_norminette $rel_path_to_project
+  do_norminette
+  check_necess_files
 }
 
 compile_code() {
@@ -40,7 +44,6 @@ check_memory_leaks() {
 }
 
 do_norminette() {
-  rel_path_to_project=$1
   for path_to_file in "$rel_path_to_project"/*.c; do
     echo -e "\n\t>>>>running Normcheck<<<\n"
     norminette $path_to_file
@@ -48,14 +51,10 @@ do_norminette() {
   done
 }
 
-check_necess_files() {
-  rel_path_to_project=$1
-  check_mandatory_files $rel_path_to_project
-  check_test_files $rel_path_to_project
-}
+# check_necess_files() {
+# }
 
 check_mandatory_files() {
-  rel_path_to_project=$1
   readarray -t necess_file_list <file_func_list.txt
   avail_file_list_rel_path=("$rel_path_to_project"/*.c)
   avail_file_list_file_names=()
@@ -78,8 +77,8 @@ check_mandatory_files() {
 check_function_name() {
   file_rel_path=$1
   function_name=$(basename "${file_rel_path%.*}")
-  reg_exp="${function_name}\([\.\s\S]*\)"
-  function_name_exists=$(cat $file_rel_path | grep -P "${reg_exp}" | wc -l)
+  reg_exp="(?s)${function_name}(.{4,}){.{8,}}"
+  function_name_exists=$(cat $file_rel_path | grep -Pzo "${reg_exp}" | wc -l)
   if [ $function_name_exists -ge 1 ]; then
     echo -e "PASSED: Necess Function Name $function_name found in file at least one time"
   else
