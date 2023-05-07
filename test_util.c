@@ -6,9 +6,11 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 11:43:26 by smatthes          #+#    #+#             */
-/*   Updated: 2023/05/07 13:46:04 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/05/07 15:55:06 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 #include <stdio.h>
 #include <stdlib.h>

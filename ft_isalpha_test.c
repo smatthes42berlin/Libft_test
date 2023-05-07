@@ -6,9 +6,12 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:13:57 by smatthes          #+#    #+#             */
-/*   Updated: 2023/05/07 13:46:14 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/05/07 15:55:30 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,7 +20,6 @@
 
 void	run_test_one_int(int expected_res, int test_val, char *gen_name,
 		int (*func)(int c));
-int		ft_isalpha(int c);
 
 int	main(void)
 {

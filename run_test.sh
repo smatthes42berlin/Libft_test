@@ -3,6 +3,7 @@
 clear
 
 source config.sh
+source update_header_in_tests.sh
 
 main() {
   proj_files="$rel_path_to_project"/*.c;

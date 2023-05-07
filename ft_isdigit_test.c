@@ -6,9 +6,12 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 10:05:52 by smatthes          #+#    #+#             */
-/*   Updated: 2023/05/07 14:55:40 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/05/07 15:55:35 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
+
 
 #include <limits.h>
 #include <stdio.h>
@@ -17,7 +20,6 @@
 
 void	run_test_one_int(int expected_res, int test_val, char *gen_name,
 			int (*func)(int c));
-int		ft_isdigit(int c);
 
 int	main(void)
 {

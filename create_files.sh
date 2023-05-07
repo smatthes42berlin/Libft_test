@@ -8,6 +8,7 @@ main() {
     read_necess_file_list
     create_necess_files
     create_test_files
+    test_header_file
 }
 
 create_necess_files() {
@@ -58,6 +59,24 @@ check_name_testing() {
         echo -e "PASSED: $1 function name check $function_name"
     else
         echo -e "FAILED: $1 function name check $function_name"
+    fi
+}
+
+test_header_file() {
+    header_path="$rel_path_to_project/libft.h"
+    if [ ! -f $header_path ]; then
+        echo "header file not found"
+    else
+        for file in "${necess_file_list[@]}"; do
+            function_name="${file%.*}"
+            reg_exp="${function_name}(.*);"
+            function_name_exists=$(cat $header_path | grep -E "${reg_exp}" | wc -l)
+            if [ $function_name_exists -ge 1 ]; then
+                echo -e "PASSED: header file check $function_name"
+            else
+                echo -e "FAILED: header file check $function_name"
+            fi
+        done
     fi
 }
 
