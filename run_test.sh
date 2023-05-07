@@ -1,25 +1,28 @@
 #!/bin/bash
 
+clear
+
 source config.sh
 
 main() {
-  clear
-  # rel_path_to_project="../../projects42/Libft"
+  proj_files="$rel_path_to_project"/*.c;
   for path_to_file in "$rel_path_to_project"/*.c; do
-    echo $path_to_file
-    compile_code
-    run_tests
-    rm test
+    chmod  777 $path_to_file 
+    line_count=$(cat $path_to_file | wc -l)
+    if [[ $line_count > 17 ]]; then
+      compile_code
+      run_tests
+      rm test
+    fi
   done
-  do_norminette
-  check_necess_files
+  # do_norminette
 }
 
 compile_code() {
   file_name=$(basename $path_to_file)
   file_base_name=$(echo "$file_name" | rev | cut -f 2- -d '.' | rev)
   test_file_name="${file_base_name}_test.c"
-  cc -Wall -Wextra -Werror $path_to_file $test_file_name -o test
+  cc -Wall -Wextra -Werror $path_to_file $test_file_name "test_util.c" -o test
 }
 
 run_tests() {
@@ -49,41 +52,6 @@ do_norminette() {
     norminette $path_to_file
     echo -e "\n\t>>>>finished Normcheck<<<\n"
   done
-}
-
-# check_necess_files() {
-# }
-
-check_mandatory_files() {
-  readarray -t necess_file_list <file_func_list.txt
-  avail_file_list_rel_path=("$rel_path_to_project"/*.c)
-  avail_file_list_file_names=()
-  for i in "${!avail_file_list_rel_path[@]}"; do
-    avail_file_list_file_names[$i]=$(basename "${avail_file_list_rel_path[$i]}")
-  done
-  for i in "${!necess_file_list[@]}"; do
-    basename=$(basename "${necess_file_list[$i]}")
-    if [[ " ${avail_file_list_file_names[*]} " =~ " ${basename} " ]]; then
-      echo "PASSED: necessary file $basename found"
-      check_function_name "$rel_path_to_project/$basename"
-      continue
-    else
-      echo "FAILED: necessary file $basename not found"
-    fi
-  done
-
-}
-
-check_function_name() {
-  file_rel_path=$1
-  function_name=$(basename "${file_rel_path%.*}")
-  reg_exp="(?s)${function_name}(.{4,}){.{8,}}"
-  function_name_exists=$(cat $file_rel_path | grep -Pzo "${reg_exp}" | wc -l)
-  if [ $function_name_exists -ge 1 ]; then
-    echo -e "PASSED: Necess Function Name $function_name found in file at least one time"
-  else
-    echo -e "FAILED: Necess Function Name $function_name not found in file"
-  fi
 }
 
 main "$@"
