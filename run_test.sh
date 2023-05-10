@@ -4,13 +4,19 @@ clear
 
 source config.sh
 source update_header_in_tests.sh
+source make_library.sh
 
 main() {
-  proj_files="$rel_path_to_project"/*.c;
-  for path_to_file in "$rel_path_to_project"/*.c; do
-    chmod  777 $path_to_file 
+  if [ $1 ]; then
+    proj_files=($rel_path_to_project/$1)
+  else
+    proj_files=($rel_path_to_project/*.c)
+  fi
+  # for path_to_file in "$rel_path_to_project"/*.c; do
+  for path_to_file in "${proj_files[@]}"; do
+    chmod 777 $path_to_file
     line_count=$(cat $path_to_file | wc -l)
-    if [[ $line_count > 17 ]]; then
+    if [[ $line_count > 15 ]]; then
       compile_code
       run_tests
       rm test
@@ -23,7 +29,8 @@ compile_code() {
   file_name=$(basename $path_to_file)
   file_base_name=$(echo "$file_name" | rev | cut -f 2- -d '.' | rev)
   test_file_name="${file_base_name}_test.c"
-  cc -Wall -Wextra -Werror $path_to_file $test_file_name "test_util.c" -o test
+  # cc -Wall -Wextra -Werror $path_to_file $test_file_name "test_util.c" -o test
+  cc -Wall -Wextra -Werror $test_file_name "test_util.c" -o test -L. "$rel_path_to_project/libft.a"
 }
 
 run_tests() {

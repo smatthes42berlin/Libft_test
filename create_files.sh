@@ -14,10 +14,10 @@ main() {
 create_necess_files() {
     for file in "${necess_file_list[@]}"; do
         file_path="$rel_path_to_project/$file"
-        if [ ! -f $file_path ]; then
-            touch $file_path
-            vim -c Stdheader -c wq $file_path
-        fi
+        # if [ ! -f $file_path ]; then
+        #     touch $file_path
+        #     vim -c Stdheader -c wq $file_path
+        # fi
         check_name_definition "necess files"
     done
 }
@@ -44,9 +44,9 @@ check_name_definition() {
     reg_exp="(?s)${function_name}(.{4,}){.{8,}}"
     function_name_exists=$(cat $file_path | grep -Pzo "${reg_exp}" | wc -l)
     if [ $function_name_exists -ge 1 ]; then
-        echo -e "PASSED: $1 function name check $function_name"
+        echo -e "PASSED: $1 function name $function_name found in file $file_path"
     else
-        echo -e "FAILED: $1 function name check $function_name"
+        echo -e "FAILED: $1 function name $function_name not found in file $file_path"
     fi
 }
 
@@ -56,9 +56,9 @@ check_name_testing() {
     reg_exp="${function_name}(.*);"
     function_name_exists=$(cat $file_path | grep -E "${reg_exp}" | wc -l)
     if [ $function_name_exists -ge 2 ]; then
-        echo -e "PASSED: $1 function name check $function_name"
+        echo -e "PASSED: $1 function name $function_name found in file $file_path"
     else
-        echo -e "FAILED: $1 function name check $function_name"
+        echo -e "FAILED: $1 function name $function_name not found in file $file_path"
     fi
 }
 
