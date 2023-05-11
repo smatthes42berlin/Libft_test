@@ -16,7 +16,7 @@ main() {
   for path_to_file in "${proj_files[@]}"; do
     chmod 777 $path_to_file
     line_count=$(cat $path_to_file | wc -l)
-    if [[ $line_count > 15 ]]; then
+    if [[ $line_count -gt 15 ]] || [[ $line_count > 15 ]]; then
       compile_code
       run_tests
       rm test
@@ -30,7 +30,7 @@ compile_code() {
   file_base_name=$(echo "$file_name" | rev | cut -f 2- -d '.' | rev)
   test_file_name="${file_base_name}_test.c"
   # cc -Wall -Wextra -Werror $path_to_file $test_file_name "test_util.c" -o test
-  cc -Wall -Wextra -Werror $test_file_name "test_util.c" -o test -L. "$rel_path_to_project/libft.a"
+  cc -Wall -Wextra -Werror $test_file_name "test_util.c" -lbsd -o test -L. "$rel_path_to_project/libft.a"
 }
 
 run_tests() {

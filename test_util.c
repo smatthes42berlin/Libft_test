@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 11:43:26 by smatthes          #+#    #+#             */
-/*   Updated: 2023/05/10 09:50:22 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:00:49 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,16 @@ void	compare_int_res_one_str(int libc_res, int ft_res, char *test_case)
 	}
 	else
 	{
-		print_failed_msg_one_int(test_case, ft_res, libc_res);	
+		print_failed_msg_one_int(test_case, ft_res, libc_res);
+	}
+}
+
+void	compare_int_res_one_str_fail_only(int libc_res, int ft_res,
+		char *test_case)
+{
+	if (libc_res != ft_res)
+	{
+		print_failed_msg_one_int(test_case, ft_res, libc_res);
 	}
 }
 
@@ -58,7 +67,7 @@ void	compare_strs(int libc_res, int ft_res, int strcmp_res, char *test_case)
 	}
 	else
 	{
-		print_failed_msg_one_int(test_case, ft_res, libc_res);	
+		print_failed_msg_one_int(test_case, ft_res, libc_res);
 	}
 }
 
@@ -76,4 +85,50 @@ void	print_failed_msg_one_int(char *test_case, int ft_res, int libc_res)
 	printf("\texpected Res = %d", libc_res);
 	printf("\tactual Res = %d", ft_res);
 	printf("\n");
+}
+
+char	*rand_string(char *str, size_t size)
+{
+	size_t	i;
+	int		rand_num;
+
+	// time_t t;
+	// char c[] = {'a', 'b', 'c', 'd'};
+	// srand((unsigned)time(&t));
+	i = 0;
+	while (i < size)
+	{
+		// rand_num = rand() % 1000;
+		// rand_num = (rand() % (126 - 33)) + 33;
+		rand_num = rand() % 255;
+		// rand_num = rand() % (sizeof(c) - 1);
+		str[i] = (unsigned char)rand_num;
+		// str[i] = c[rand_num];
+		i++;
+	}
+	str[size] = '\0';
+	return (str);
+}
+
+char	*get_dig_str(char *str, size_t size)
+{
+	size_t i;
+	int rand_num;
+	int test;
+
+	i = 0;
+	test = rand();
+	if(test % 2 == 0)
+	{
+		str[i] = '-';
+		i++;
+	}
+	while (i < size)
+	{
+		rand_num = (rand() % 9) + 48;
+		str[i] = rand_num;
+		i++;
+	}
+	str[size] = '\0';
+	return (str);
 }

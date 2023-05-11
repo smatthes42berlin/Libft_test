@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 10:05:52 by smatthes          #+#    #+#             */
-/*   Updated: 2023/05/10 19:16:23 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/05/11 12:44:48 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,6 @@ int	main(void)
 	char	*ft_res_ptr;
 	char	*libc_res_ptr;
 	int		strcmp_res;
-
-    src = "aaaaa";
-    printf("input: %s output: %s\n", src, strrchr(src, 'a'));
-    src = "aaaaa";
-    printf("input: %s output: %s\n", src, strrchr(src, '\0'));
-    src = "ababa";
-    printf("input: %s output: %s\n", src, strrchr(src, 'b'));
-    src = "aaaaa";
-    printf("input: %s output: %s\n", src, strrchr(src, 'z'));
 
 	src = "abcdefg";
 	ft_res_ptr = NULL;
