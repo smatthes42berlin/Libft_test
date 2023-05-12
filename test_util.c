@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 11:43:26 by smatthes          #+#    #+#             */
-/*   Updated: 2023/05/11 17:00:49 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:18:21 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,24 @@ char	*rand_string(char *str, size_t size)
 	return (str);
 }
 
+void	*rand_mem(void *str, size_t size)
+{
+	size_t			i;
+	int				rand_num;
+	unsigned char	*str_u;
+
+	str_u = (unsigned char *)str;
+	i = 0;
+	while (i < size)
+	{
+		// rand_num = rand() % 255;
+		rand_num = (rand() % (126 - 33)) + 33;
+		str_u[i] = (unsigned char)rand_num;
+		i++;
+	}
+	return (str);
+}
+
 char	*get_dig_str(char *str, size_t size)
 {
 	size_t i;
@@ -118,7 +136,7 @@ char	*get_dig_str(char *str, size_t size)
 
 	i = 0;
 	test = rand();
-	if(test % 2 == 0)
+	if (test % 2 == 0)
 	{
 		str[i] = '-';
 		i++;

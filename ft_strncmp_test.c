@@ -6,21 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 10:05:52 by smatthes          #+#    #+#             */
-/*   Updated: 2023/05/11 14:39:20 by smatthes         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "libft.h"
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strlcat_test.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 08:51:21 by smatthes          #+#    #+#             */
-/*   Updated: 2023/05/10 12:15:51 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:54:16 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +40,6 @@ int	main(void)
 		rand_string(src1, size1);
 		rand_string(src2, size2);
 		// printf("size1 = %d, size2 = %d, cmp_num = %d\n", size1, size2,
-				cmp_num);
 		// printf("src1 = %s, src2 = %s\n", src1, src2);
 		ft_res_ptr = ft_strncmp(src1, src2, cmp_num);
 		libc_res_ptr = strncmp(src1, src2, cmp_num);

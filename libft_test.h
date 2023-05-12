@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 08:32:54 by smatthes          #+#    #+#             */
-/*   Updated: 2023/05/11 16:56:27 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:11:11 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ char	*rand_string(char *str, size_t size);
 void	compare_int_res_one_str_fail_only(int libc_res, int ft_res,
 			char *test_case);
 char	*get_dig_str(char *str, size_t size);
+void	*rand_mem(void *str, size_t size);
 
 #endif
