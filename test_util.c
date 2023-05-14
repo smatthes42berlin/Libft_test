@@ -6,7 +6,7 @@
 /*   By: smatthes <smatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 11:43:26 by smatthes          #+#    #+#             */
-/*   Updated: 2023/05/12 11:18:21 by smatthes         ###   ########.fr       */
+/*   Updated: 2023/05/14 15:56:33 by smatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,9 +130,9 @@ void	*rand_mem(void *str, size_t size)
 
 char	*get_dig_str(char *str, size_t size)
 {
-	size_t i;
-	int rand_num;
-	int test;
+	size_t	i;
+	int		rand_num;
+	int		test;
 
 	i = 0;
 	test = rand();
@@ -149,4 +149,19 @@ char	*get_dig_str(char *str, size_t size)
 	}
 	str[size] = '\0';
 	return (str);
+}
+
+char	test_map_to_upper(unsigned int i, char c)
+{
+	i++;
+	return (ft_toupper(c));
+}
+
+void	test_iter_to_upper(unsigned int i, char *c)
+{
+	char temp;
+
+	i++;
+	temp = *c;
+	*c = ft_toupper(temp);
 }
