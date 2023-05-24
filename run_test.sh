@@ -30,8 +30,8 @@ compile_code() {
   file_base_name=$(echo "$file_name" | rev | cut -f 2- -d '.' | rev)
   test_file_name="${file_base_name}_test.c"
   # cc -Wall -Wextra -Werror $path_to_file $test_file_name "test_util.c" -o test
-  # cc -Wall -Wextra -Werror $test_file_name "test_util.c" -lbsd -o test -L. "$rel_path_to_project/libft.a"
-  cc $test_file_name "test_util.c" -lbsd -o test -L. "$rel_path_to_project/libft.a"
+  cc -Wall -Wextra -Werror $test_file_name "test_util.c" -lbsd -o test -L. "$rel_path_to_project/libft.a"
+  # cc $test_file_name "test_util.c" -lbsd -o test -L. "$rel_path_to_project/libft.a"
 }
 
 run_tests() {

@@ -1,4 +1,4 @@
 pwd="$(pwd)"
 cd "$rel_path_to_project"
-make all || exit
+make bonus || exit
 cd $pwd
